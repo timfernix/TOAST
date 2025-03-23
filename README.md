@@ -1,4 +1,4 @@
-# TOAST
+# TOAST Bot
 [Twodis](https://x.com/Twodi_wav) OTP ARAM Super Tournament (short TOAST) - Bot
 
 ![](https://img.shields.io/badge/Editor-Visual%20Studio%20/%20Code-blueviolet?style=for-the-badge&logo=visualstudio)
