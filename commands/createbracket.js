@@ -159,7 +159,7 @@ module.exports = {
 
                     unpairedPlayers.forEach(player => {
                         unpairedEmbed.addFields({ 
-                            name: player.nickname, 
+                            name: `${player.nickname} (${player.server})`, 
                             value: `<@${player.discord_id}> (${player.otp})`,
                         });
                     });
