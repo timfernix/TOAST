@@ -22,9 +22,10 @@ module.exports = {
                 .setRequired(false)),
     async execute(interaction) {
         try {
+            await interaction.deferReply({ flags: 64 });
             const requiredRoleId = '1352993514996371496';
             if (!interaction.member.roles.cache.has(requiredRoleId)) {
-                return interaction.reply({ content: 'You do not have permission to use this command.', flags: 64 });
+                return interaction.editReply({ content: 'You do not have permission to use this command.' });
             }
 
             const wins = interaction.options.getInteger('wins') || 0;
@@ -111,14 +112,17 @@ module.exports = {
                 .setColor(0x2a8cfd);
 
             const message = await interaction.channel.send({ embeds: [loadingEmbed], files: [{ attachment: path.join(__dirname, '../toast_loading.gif'), name: 'toast_loading.gif' }] });
-            await interaction.reply({ content: 'Bracket creation has been initiated.', flags: 64 });
+            await interaction.editReply({ content: 'Bracket creation has been initiated.' });
 
             setTimeout(async () => {
                 let bannerImage = 'attachment://toast_banner.png';
                 let files = [{ attachment: path.join(__dirname, '../toast_banner.png'), name: 'toast_banner.png' }];
-                if (bo3 && (wins === 3 || wins === 5)) {
-                    bannerImage = 'attachment://toast_banner_bo3.png';
-                    files = [{ attachment: path.join(__dirname, '../toast_banner_bo3.png'), name: 'toast_banner_bo3.png' }];
+                if (bo3 && wins === 3) {
+                    bannerImage = 'attachment://toast_banner_bo3_quarter.png';
+                    files = [{ attachment: path.join(__dirname, '../toast_banner_bo3_quarter.png'), name: 'toast_banner_bo3_quarter.png' }];
+                } else if (bo3 && wins === 5) {
+                    bannerImage = 'attachment://toast_banner_bo3_semi.png';
+                    files = [{ attachment: path.join(__dirname, '../toast_banner_bo3_semi.png'), name: 'toast_banner_bo3_semi.png' }];
                 } else if (bo5 && wins === 7) {
                     bannerImage = 'attachment://toast_banner_bo5.png';
                     files = [{ attachment: path.join(__dirname, '../toast_banner_bo5.png'), name: 'toast_banner_bo5.png' }];
@@ -174,7 +178,7 @@ module.exports = {
             await connection.end();
         } catch (error) {
             console.error('Error executing the command:', error);
-            await interaction.reply({ content: `There was an error while executing this command: ${error.message}`, flags: 64 });
+            await interaction.editReply({ content: `There was an error while executing this command: ${error.message}` });
         }
     }
 }
