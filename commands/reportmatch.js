@@ -80,7 +80,7 @@ module.exports = {
                 host: '',
                 port: ,
                 user: '',
-                password: 'AAAhfgAVghgS_gfghdhgngf7Ahfghffgh',
+                password: '',
                 database: '',
                 ssl: {
                     ca: caCert
