@@ -124,7 +124,7 @@ const remainingPlayers = playerData.filter(p => !usedPlayers.has(p.discord_id));
    - They **don't have the same OTP champion** (to avoid mirror matches).
    - They **belong to the same server**.
 2. The first available player that fits these criteria is chosen.
-(If there are only two players left and they have the same otp, they are matched anyways.)
+3. (If there are only two players left and they have the same otp, they are matched anyways.)
 ---
 
 ## ❌ **Handling Unpaired Players**
