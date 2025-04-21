@@ -106,6 +106,14 @@ module.exports = {
                 }
             }
 
+            const remainingPlayers = playerData.filter(p => !usedPlayers.has(p.discord_id));
+            if (remainingPlayers.length === 2) {
+                const [player1, player2] = remainingPlayers;
+                pairs.push([player1, player2]);
+                usedPlayers.add(player1.discord_id);
+                usedPlayers.add(player2.discord_id);
+            }
+
             const loadingEmbed = new EmbedBuilder()
                 .setDescription('Please wait while the bracket is being created.')
                 .setImage('attachment://toast_loading.gif')
