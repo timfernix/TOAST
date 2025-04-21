@@ -109,6 +109,14 @@ for (let i = 0; i < playerData.length; i++) {
         break;
     }
 }
+
+const remainingPlayers = playerData.filter(p => !usedPlayers.has(p.discord_id));
+    if (remainingPlayers.length === 2) {
+        const [player1, player2] = remainingPlayers;
+        pairs.push([player1, player2]);
+        usedPlayers.add(player1.discord_id);
+        usedPlayers.add(player2.discord_id);
+        }
 ```
 🔹 **Pairing Criteria:**
 1. **Players are matched if:**
@@ -116,7 +124,7 @@ for (let i = 0; i < playerData.length; i++) {
    - They **don't have the same OTP champion** (to avoid mirror matches).
    - They **belong to the same server**.
 2. The first available player that fits these criteria is chosen.
-
+(If there are only two players left and they have the same otp, they are matched anyways.)
 ---
 
 ## ❌ **Handling Unpaired Players**
